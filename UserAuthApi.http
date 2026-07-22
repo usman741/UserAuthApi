@@ -1,0 +1,171 @@
+@baseUrl = http://localhost:5030
+
+### ============================================
+### Register User
+### ============================================
+
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Usman Butt",
+  "phoneNumber": "03001234567",
+  "email": "usman@example.com",
+  "password": "Usman@123"
+}
+
+### ============================================
+### Login User
+### ============================================
+
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "usman@example.com",
+  "password": "Usman@123"
+}
+
+### ============================================
+### Copy JWT Token from Login Response
+### ============================================
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwiZW1haWwiOiJ1c21hbkBleGFtcGxlLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJVc21hbiBCdXR0IiwiZXhwIjoxNzg0NzM5MzI5LCJpc3MiOiJVc2VyQXV0aEFwaSIsImF1ZCI6IlVzZXJBdXRoQXBpVXNlcnMifQ.O_bBESOL83D8suf18apRK5hbeNVludI7WFeeXJTKh0Q
+### ============================================
+### Future Protected API Test
+### (Will work after ProfileController is added)
+### ============================================
+
+GET {{baseUrl}}/api/profile
+Authorization: Bearer {{token}}
+
+### Get Profile
+GET {{baseUrl}}/api/profile
+Authorization: Bearer {{token}}
+
+### Update Profile
+PUT {{baseUrl}}/api/profile
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "level": 10,
+    "xp": 500,
+    "coins": 2000,
+    "gems": 50,
+    "currentCharacter": "Knight"
+}
+
+###
+PUT http://localhost:5030/api/profile/2/custom-data
+Content-Type: application/json
+
+{
+  "customData": {
+    "player": {
+      "playerId": 2,
+      "displayName": "Usman",
+      "level": 15,
+      "xp": 8750,
+      "coins": 2500,
+      "gems": 1,
+      "energy": 95,
+      "maxEnergy": 100,
+      "currentCharacter": "Warrior",
+      "createdAt": "2026-07-22T10:00:00Z",
+      "lastLogin": "2026-07-22T16:40:00Z"
+    },
+
+    "progress": {
+      "currentWorld": 2,
+      "currentLevel": 8,
+      "currentMission": "Mission_08",
+      "checkpoint": "BossRoom",
+      "completedLevels": [1,2,3,4,5,6,7],
+      "completedMissions": [
+        "Mission_01",
+        "Mission_02",
+        "Mission_03"
+      ]
+    },
+
+    "inventory": {
+      "coins": 2500,
+      "gems": 1,
+      "items": [
+        {
+          "id": 101,
+          "name": "Health Potion",
+          "quantity": 15
+        },
+        {
+          "id": 205,
+          "name": "Iron Sword",
+          "quantity": 1
+        },
+        {
+          "id": 301,
+          "name": "Magic Scroll",
+          "quantity": 3
+        }
+      ]
+    },
+
+    "characters": [
+      {
+        "id": 1,
+        "name": "Warrior",
+        "level": 15,
+        "isSelected": true,
+        "skin": "Golden"
+      },
+      {
+        "id": 2,
+        "name": "Mage",
+        "level": 8,
+        "isSelected": false,
+        "skin": "Default"
+      }
+    ],
+
+    "equipment": {
+      "weapon": {
+        "id": 501,
+        "name": "Excalibur"
+      },
+      "helmet": {
+        "id": 601,
+        "name": "Knight Helmet"
+      },
+      "armor": {
+        "id": 701,
+        "name": "Steel Armor"
+      }
+    },
+
+    "settings": {
+      "musicVolume": 0.8,
+      "sfxVolume": 1.0,
+      "language": "English",
+      "graphics": "High",
+      "vibration": true
+    },
+
+    "achievements": [
+      "FIRST_LOGIN",
+      "FIRST_KILL",
+      "LEVEL_10"
+    ],
+
+    "dailyReward": {
+      "day": 4,
+      "lastClaim": "2026-07-22T09:30:00Z"
+    },
+
+    "cloudData": {
+      "saveVersion": 1,
+      "device": "Quest 3",
+      "platform": "Android"
+    }
+  }
+}
